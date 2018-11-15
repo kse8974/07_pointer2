@@ -2,49 +2,46 @@
 #include <stdlib.h>
 
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
-int sum(int x, int y){
-	return x+y;
+void print_image(int image[][5]){
+	int i, j;
+	int *ptr= &image[0][0];
+	
+	for(i=0; i<5; i++){
+		for(j=0; j<5; j++){
+			printf("%d", *ptr);
+			ptr = ptr +1;
+		}
+		printf("\n");
+	}
+	printf("\n");
 }
 
-int sub(int x, int y){
-	return x-y;
-}
-
-int mul(int x, int y){
-	return x*y;
-}
-
-int div1(int x, int y){
-	return x/y;
+void brighten_image(int image[][5]){
+	int i, j;
+	int*ptr= &image[0][0];
+	
+	for(i=0; i<5; i++){
+		for(j=0; j<5; j++){
+			*ptr = *ptr +10;
+			ptr = ptr +1;
+		}
+	}
 }
 
 
 int main(int argc, char *argv[]) {
 	
-	int number1, number2;
-	char sign;
-	int (*calcfunc)(int, int);
+	int image[5][5] = {
+		{10,  20,  30,  40,  50},
+		{10,  20,  30,  40,  50},
+		{10,  20,  30,  40,  50},
+		{10,  20,  30,  40,  50},
+		{10,  20,  30,  40,  50}
+	};
 	
-	printf("숫자, 기호, 숫자를 입력하십시오        \n");
-	scanf("%d %c %d", &number1, &sign, &number2);
-
-	switch(sign){
-		case '+':
-			calcfunc = sum;
-			break;
-			
-		case '-':
-			calcfunc = sub;
-			break;
-		case '*':
-			calcfunc = mul;
-			break;
-		case '/':
-			calcfunc = div1;
-			break;
-			
-	}
-	printf("result: %i \n", calcfunc(number1, number2));
+	print_image(image);
+	brighten_image(image);
+	print_image(image);
 	return 0;
 }
 
